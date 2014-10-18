@@ -13,3 +13,9 @@
   <hr/>
   
 </div>
+
+<% @posts.each do |post| %>
+    <div class='well'>
+      <p><%= post.comment %></p>
+    </div>
+<% end %>
