@@ -4,7 +4,11 @@
 </div>
 
 <% @topposts.each do |toppost| %>
-    <div class='card-trending' style="display: flex;">
+    <%if toppost.user_id == @event.user_id%>
+    <div class='card-op' style="display: flex">
+      <% else %>
+      <div class='card-trending' style="display: flex">
+        <%end%>
       <div class='col-md-1' style= ''>
         <div class="center">
           <i class="fa fa-arrow-up"></i>
@@ -16,8 +20,16 @@
           <i class="fa fa-arrow-down"></i>
         </div>
       </div>
-      <div class='col-md-8' style="display:-webkit-box; -webkit-box-align:center;">
-      <%= toppost.comment %>
+      <div class="col-md-8" style=''>
+        <div class="row text-muted" style="font-size: 12px;">
+        <% if toppost.user_id %>
+            <%= toppost.user.name %>
+        <% else %>
+            <%= toppost.name.capitalize %>
+        <% end %>
+         - 
+        <%= time_ago_in_words(toppost.created_at) %></div>
+        <div class="row"><%= toppost.comment %></div>
       </div>
       <div class="pull-right" style="display:-webkit-box; -webkit-box-align:center; margin-left:15%"><button class='btn btn-success disabled'>Trending</button></div>
     </div>
@@ -36,8 +48,8 @@
     </div>
     <div class="col-md-3">
       <%= f.submit "Post", class: "btn btn-primary btn-lg", style: "height: 100%; width: 100%" %>
-      <% if signed_in? %>
-        <span class="text-muted center">You are posting as <% current_user.name %></span>
+      <% if signed_in? && current_user.id == @event.user_id%>
+        <span class="text-muted center">You are posting as <%= current_user.name %></span>
       <% else %>
         <span class="text-muted center">You are posting <strong>anonymous</strong></span>
       <% end %>
@@ -57,7 +69,11 @@
 <hr/>
 
 <% @posts.each do |post| %>
-    <div class='card' style="display: flex">
+  <%if post.user_id == @event.user_id%>
+    <div class='card-op' style="display: flex">
+      <% else %>
+      <div class='card' style="display: flex">
+        <%end%>
       <div class='col-md-1' style= 'margin-left: -18px;'>
         <div class="center">
           <i class="fa fa-arrow-up"></i>
@@ -71,10 +87,10 @@
       </div>
       <div class="col-md-11" style=''>
         <div class="row text-muted" style="font-size: 12px;">
-        <% if post.name %>
-          <%= post.name.capitalize %>
+        <% if post.user_id %>
+            <%= post.user.name %>
         <% else %>
-          Anonymous
+            <%= post.name.capitalize %>
         <% end %>
          - 
         <%= time_ago_in_words(post.created_at) %></div>
