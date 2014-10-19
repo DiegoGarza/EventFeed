@@ -113,10 +113,12 @@
 
 </hr>
 
-<div class="center">
-  <h3>Other events nearby </h3>
-  <hr/>
-</div>
+<% if @events.count(:all) > 1 %>
+  <div class="center">
+    <h3>Other events nearby </h3>
+    <hr/>
+  </div>
+<% end %>
 
 <% @events.each do |event| %>
   <% if event.id != @event.id %>
