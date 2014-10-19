@@ -28,7 +28,7 @@
 <%= form_for(@post) do |f| %>
   <div class="form-group" style="display: flex;">
     <div class="col-md-9">
-      <%= f.text_area :comment, class: 'form-control', style: "height: 70px;", placeholder: "Compose new post..." %>
+      <%= f.text_area :comment, id: 'comment', class: 'form-control', style: "height: 70px;", placeholder: "Compose new post..." %>
       <%= f.hidden_field :event_id, value: @event.id %>
       <% if signed_in? && current_user.id == @event.user_id %>
         <%= f.hidden_field :user_id, value: current_user.id %>
@@ -43,7 +43,7 @@
       <% end %>
     </div>
   </div>
-  <div class="well well-sm">
+  <div class="well well-sm" id='tips' hidden>
     Help us by:
     <ul>
       <li>being <strong>nice</strong></li>
@@ -70,7 +70,14 @@
         </div>
       </div>
       <div class="col-md-11" style=''>
-        <div class="row text-muted" style="font-size: 12px;">Name goes here - <%= time_ago_in_words(post.created_at) %></div>
+        <div class="row text-muted" style="font-size: 12px;">
+        <% if post.name %>
+          <%= post.name.capitalize %>
+        <% else %>
+          Anonymous
+        <% end %>
+         - 
+        <%= time_ago_in_words(post.created_at) %></div>
         <div class="row"><%= post.comment %></div>
       </div>
     </div>

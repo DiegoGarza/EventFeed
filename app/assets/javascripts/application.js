@@ -65,7 +65,6 @@ $(function(){
     console.log(myPos);
   });
 
-  
   function handleNoGeolocation(errorFlag) {
     if (errorFlag) {
       var content = 'Error: The Geolocation service failed.';
@@ -83,7 +82,11 @@ $(function(){
     map.setCenter(options.position);
   }
 
-  
+  if($('#comment')){
+    $( "#comment" ).focusin(function() {
+      $('#tips').slideDown();
+    });
+  }
   
   // console.log(google.maps.geometry.spherical.computeDistanceBetween (pos1, pos2));
   
