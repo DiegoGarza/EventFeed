@@ -19,11 +19,11 @@
           <% end %>
           <li id="fat-menu" class="dropdown">
             <a href='#' class="dropdown-toggle" data-toggle="dropdown">Account<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="dropdown">
-              <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <ul class="dropdown-menu hl" role="dropdown">
+              <li class="hl"><%= link_to "Profile", current_user %></li>
+              <li class="hl"><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
-              <li>
+              <li class="hl">
                 <%= link_to "Sign out", signout_path, method: "delete" %>
               </li>
             </ul>

@@ -12,9 +12,9 @@ class PostsController < ApplicationController
     @post.name = adjective[rand(0..adjective.count-1)] + " " + animals[rand(0..animals.count-1)]
     if @post.save
       flash[:success] = "Post created!"
-      redirect_to root_url
+      redirect_to root_url(event)
     else
-      render 'static_pages/home'
+      redirect_to root_url(event)
     end
   end
 
