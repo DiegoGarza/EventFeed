@@ -29,6 +29,9 @@
     <%= f.text_area :comment, class: 'form-control', placeholder: "Compose new post..." %>
   </div>
   <%= f.hidden_field :event_id, value: @event.id %>
+  <% if signed_in? && current_user.id == @event.user_id %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+  <% end %>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
 

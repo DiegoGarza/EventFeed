@@ -4,6 +4,7 @@ class StaticController < ApplicationController
     @posts = @event.posts.order("created_at DESC")
     @topposts = @event.posts.limit(3).order("score DESC")
     @post = Post.new
+    @user = current_user
   end
 
   def about
