@@ -83,6 +83,8 @@ $(function(){
     map.setCenter(options.position);
   }
 
+  
+  
   // console.log(google.maps.geometry.spherical.computeDistanceBetween (pos1, pos2));
   
 });

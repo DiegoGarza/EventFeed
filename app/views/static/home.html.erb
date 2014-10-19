@@ -1,14 +1,11 @@
 <div class="center">
   <h1><%= @event.name %></h1>
-  <div class="well">
-    <%= @location.coordinates %>
-  </div>
   <hr/>
 </div>
 
 <% @topposts.each do |toppost| %>
-    <div class='jumbotron'>
-      <div class='col-md-1' style= 'margin-left: -60px; margin-top: -9px;'>
+    <div class='card-trending' style="display: flex;">
+      <div class='col-md-1' style= ''>
         <div class="center">
           <i class="fa fa-arrow-up"></i>
         </div>
@@ -19,30 +16,49 @@
           <i class="fa fa-arrow-down"></i>
         </div>
       </div>
-      <div style='margin: 10px;'>
+      <div class='col-md-8' style="display:-webkit-box; -webkit-box-align:center;">
       <%= toppost.comment %>
       </div>
+      <div class="pull-right" style="display:-webkit-box; -webkit-box-align:center; margin-left:15%"><button class='btn btn-success disabled'>Trending</button></div>
     </div>
 <% end %>
 
 <hr/>
 
 <%= form_for(@post) do |f| %>
-  <div class="form-group">
-    <%= f.text_area :comment, class: 'form-control', placeholder: "Compose new post..." %>
+  <div class="form-group" style="display: flex;">
+    <div class="col-md-9">
+      <%= f.text_area :comment, class: 'form-control', style: "height: 70px;", placeholder: "Compose new post..." %>
+      <%= f.hidden_field :event_id, value: @event.id %>
+      <% if signed_in? && current_user.id == @event.user_id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= f.submit "Post", class: "btn btn-primary btn-lg", style: "height: 100%; width: 100%" %>
+      <% if signed_in? %>
+        <span class="text-muted center">You are posting as <% current_user.name %></span>
+      <% else %>
+        <span class="text-muted center">You are posting <strong>anonymous</strong></span>
+      <% end %>
+    </div>
   </div>
-  <%= f.hidden_field :event_id, value: @event.id %>
-  <% if signed_in? && current_user.id == @event.user_id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  <% end %>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <div class="well well-sm">
+    Help us by:
+    <ul>
+      <li>being <strong>nice</strong></li>
+      <li>being <strong>helpful</strong></li>
+      <li>refraining from posting <strong>offensive</strong> material.</li>
+    </ul>
+    
+  </div>
 <% end %>
 
 <hr/>
 
 <% @posts.each do |post| %>
-    <div class='well'>
-      <div class='col-md-1' style= 'margin-left: -32px'>
+    <div class='card' style="display: flex">
+      <div class='col-md-1' style= 'margin-left: -18px;'>
         <div class="center">
           <i class="fa fa-arrow-up"></i>
         </div>
@@ -53,7 +69,7 @@
           <i class="fa fa-arrow-down"></i>
         </div>
       </div>
-      <div style='margin: 19px;'>
+      <div style='display:-webkit-box; -webkit-box-align:center;'>
       <%= post.comment %>
       </div>
     </div>

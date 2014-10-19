@@ -1,20 +1,22 @@
-<nav id="navbar" class="navbar navbar-static-top navbar-inverse navbar-inner" role="navigation">
+<nav id="navbar" class="navbar navbar-static-top" role="navigation" style="background-color: rgba(255,255,255,0.6); border-top: 4px solid rgba(0, 165, 56, 0.8);">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapseOne" style="background-color: #FFA93E;">
         <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="icon-bar" style="background-color: white;"></span>
+        <span class="icon-bar" style="background-color: white;"></span>
+        <span class="icon-bar" style="background-color: white;"></span>
       </button>
-      <%= link_to "Heyah", root_path, id: "logo", class: "navbar-brand" %>
+      <%= link_to "HEYAH", root_path, id: "logo", class: "navbar-brand", style: "color: white; background-color: rgba(0, 165, 56, 0.8);" %>
     </div>
-    <div class="collapse navbar-collapse" id="navbar-collapse">
-      <ul class="nav navbar-nav navbar-left">
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
+    <div class="collapse navbar-collapse" id="navbar-collapseOne">
+      <ul class="nav navbar-nav navbar-right" style="font-size:20px;">
+            <!-- <li><%= link_to "About", about_path, style: "color: gray;" %></li> -->
+            <li class="hl"><%= link_to "Create Event <i class='fa fa-calendar fa-1x'></i>".html_safe, new_event_path, style: "color: gray;" %></li>
+            <li class="hl"><%= link_to "Sign in", signin_path, style: "color: gray;" %></li>
         <% if signed_in? %>
           <% unless admin_user? %>
+            <li><%= link_to "Users", users_path %></li>
           <% end %>
           <li id="fat-menu" class="dropdown">
             <a href='#' class="dropdown-toggle" data-toggle="dropdown">Account<span class="caret"></span></a>
@@ -28,7 +30,7 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Sign in", signin_path %></li>
+          <!-- <li><%= link_to "Sign in", signin_path %></li> -->
         <% end %>  
       </ul>
     </div>
