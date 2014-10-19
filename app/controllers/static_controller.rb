@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
   def home
     @location = lookup_ip_location.first
-
+    
     @events = Event.near(@location.coordinates, 20)
     @events = @events.order('(select count(posts.id) from posts where posts.event_id = events.id)')
     @event = @events.first
