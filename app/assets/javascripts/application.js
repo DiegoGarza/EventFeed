@@ -84,7 +84,7 @@ $(function(){
 
   if($('#comment')){
     $( "#comment" ).focusin(function() {
-      $('#tips').slideDown();
+      $('#tips').slideIn();
     });
   }
   
