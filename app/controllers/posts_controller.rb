@@ -3,7 +3,6 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.score = 0
     event = Event.find(post_params[:event_id])
-    exit
     if event.posts.count == 0 && event.user_id
       UserMailer.event_start(event, event.user).deliver
     end
