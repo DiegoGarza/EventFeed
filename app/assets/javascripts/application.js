@@ -41,15 +41,22 @@ $(function(){
     $(this).find('.btn').toggleClass('btn-default');
   })
 
-  $('#navbar').click(function() {
-    $('#navbar').toggleClass('navbar-fixed-top')
-    $('#navbar').toggleClass('navbar-static-top')
-
-    if($('#navbar').hasClass('navbar-fixed-top')){
-      $( 'body' ).css( "padding-top", "71px" );
+  
+  function handleNoGeolocation(errorFlag) {
+    if (errorFlag) {
+      var content = 'Error: The Geolocation service failed.';
     } else {
-      $( 'body' ).css( "padding-top", "0px" );
+      var content = 'Error: Your browser doesn\'t support geolocation.';
     }
-  })
 
+    var options = {
+      map: map,
+      position: new google.maps.LatLng(60, 105),
+      content: content
+    };
+
+    var infowindow = new google.maps.InfoWindow(options);
+    map.setCenter(options.position);
+  }
+  
 });

@@ -50,37 +50,20 @@ $(function(){
       placeMarker(event.latLng);
     });
 
-    function placeMarker(location) {
-      if (marker == 'undefined'){
-        marker = new google.maps.Marker({
-          position: location,
-          map: map
-        });
-      }
-      else{
-        marker.setPosition(location);
-        $("#event_lat").val(location.lat());
-        $("#event_lng").val(location.lng());
-      }
-    }
   }
 
-
-  function handleNoGeolocation(errorFlag) {
-    if (errorFlag) {
-      var content = 'Error: The Geolocation service failed.';
-    } else {
-      var content = 'Error: Your browser doesn\'t support geolocation.';
+  function placeMarker(location) {
+    if (marker == 'undefined'){
+      marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
     }
-
-    var options = {
-      map: map,
-      position: new google.maps.LatLng(60, 105),
-      content: content
-    };
-
-    var infowindow = new google.maps.InfoWindow(options);
-    map.setCenter(options.position);
+    else{
+      marker.setPosition(location);
+      $("#event_lat").val(location.lat());
+      $("#event_lng").val(location.lng());
+    }
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
