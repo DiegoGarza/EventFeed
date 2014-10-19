@@ -10,7 +10,7 @@ class StaticController < ApplicationController
       @events = @events.order('(select count(posts.id) from posts where posts.event_id = events.id)')
       @event = @events.first
       @posts = @event.posts.order("created_at DESC")
-      @topposts = @event.posts.where("score > ?", 3).limit(3).order("score DESC")
+      @topposts = @event.posts.where("score > ?", 0).limit(3).order("score DESC")
     end
     @post = Post.new
     @user = current_user
