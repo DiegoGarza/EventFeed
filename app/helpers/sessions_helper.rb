@@ -2,7 +2,7 @@ module SessionsHelper
 
   def lookup_ip_location
     if Rails.env.development?
-      Geocoder.coordinates("12.166.185.100")
+      Geocoder.search("12.166.185.100")
     else
       request.location
     end

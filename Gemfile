@@ -9,7 +9,6 @@ gem "faker"                   # Rake sample_data
 gem "parsley-rails"           # Client side validation
 gem 'bootstrap-datepicker-rails'
 gem "geocoder"
-gem "geokit"
 #Extras
 gem "will_paginate"           # Paginates, basically all but for first 30
 gem "bootstrap-will_paginate" # Bootstrap css for paginates
