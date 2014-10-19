@@ -5,9 +5,12 @@ $(function(){
 
   var map;
 
+  var pos1;
+  var pos2;
+
   function initialize() {
     var mapOptions = {
-      zoom: 6
+      zoom: 16
     };
     map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
@@ -18,6 +21,15 @@ $(function(){
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = new google.maps.LatLng(position.coords.latitude,
                                          position.coords.longitude);
+
+        if($("#event_lat").val(pos.lat())){
+          $("#event_lat").val(pos.lat());
+          $("#event_lng").val(pos.lng());
+        }
+        pos1=pos;
+        pos2= new google.maps.LatLng(pos1.lat()+0.000001, pos1.lng()+0.0000001);
+
+        console.log(google.maps.geometry.spherical.computeDistanceBetween (pos1, pos2));
 
         marker = new google.maps.Marker({
           position: pos,
@@ -48,7 +60,7 @@ $(function(){
       else{
         marker.setPosition(location);
         $("#event_lat").val(location.lat());
-        $("#event_lat").val(location.lng());
+        $("#event_lng").val(location.lng());
       }
     }
   }

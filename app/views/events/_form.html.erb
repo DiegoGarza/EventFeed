@@ -1,49 +1,39 @@
 <%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+    <% if @event.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="form-group col-md-8 col-md-offset-2">
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Event Name' %>
+        <%= f.text_area :description, class: 'form-control', placeholder: 'Event description' %>
+        <hr>
+        <div class="center">
+          <span class="text-muted" style="margin-bottom: 5px;">Add twitter information you want synced to the livefeed</span>
+        </div>
+        <%= f.text_field :twitter_username, class: 'form-control', placeholder: '@HackTX' %>
+        <%= f.text_field :twitter_hashtag, class: 'form-control', placeholder: '#HackTX' %>
+        <hr>
+
+        <%= f.hidden_field :lat %>
+        <%= f.hidden_field :lng %>
+
+      </div>
     </div>
+    <div class="row center">
+      <h5 class="text-muted">Mark the events location </h5>
+      <div id="map-canvas" class="map" style='width: 400; height: 300px;'></div>
+    </div>
+    <hr>
+    <%= link_to 'Back', events_path, :class => 'btn btn-default col-md-5' %>
+    <%= f.submit 'Create event', :class => 'btn btn-primary col-md-6 col-md-offset-1'%>
+
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :twitter_username %><br>
-    <%= f.text_field :twitter_username %>
-  </div>
-  <div class="field">
-    <%= f.label :twitter_hashtag %><br>
-    <%= f.text_field :twitter_hashtag %>
-  </div>
-
-  <div class="field">
-    <%= f.hidden_field :lat %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :lng %>
-  </div>
-
-  <div style='width: 800px;'>
-    <div id="map-canvas" style='width: 800px; height: 400px;'></div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

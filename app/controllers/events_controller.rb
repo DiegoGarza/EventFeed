@@ -17,10 +17,15 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
+    if signed_in?
+      @event.user = current_user
+    end
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { 
+          flash.now[:success] = 'Event successfully created'
+          redirect_to @event
+        }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
