@@ -26,10 +26,6 @@ $(function(){
           $("#event_lat").val(pos.lat());
           $("#event_lng").val(pos.lng());
         }
-        pos1=pos;
-        pos2= new google.maps.LatLng(pos1.lat()+0.000001, pos1.lng()+0.0000001);
-
-        console.log(google.maps.geometry.spherical.computeDistanceBetween (pos1, pos2));
 
         marker = new google.maps.Marker({
           position: pos,
