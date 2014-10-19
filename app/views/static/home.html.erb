@@ -69,8 +69,9 @@
           <i class="fa fa-arrow-down"></i>
         </div>
       </div>
-      <div style='display:-webkit-box; -webkit-box-align:center;'>
-      <%= post.comment %>
+      <div class="col-md-11" style=''>
+        <div class="row text-muted" style="font-size: 12px;">Name goes here - <%= time_ago_in_words(post.created_at) %></div>
+        <div class="row"><%= post.comment %></div>
       </div>
     </div>
 <% end %>
