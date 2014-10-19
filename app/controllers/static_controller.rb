@@ -1,7 +1,8 @@
 class StaticController < ApplicationController
   def home
-    @posts = Post.all
-    @topposts = Post.maximum("score")
+  	@event = Event.first
+    @posts = @event.posts
+    @topposts = @event.posts.limit(3).order("score DESC")
   end
 
   def about
