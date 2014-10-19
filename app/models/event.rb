@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
-	belongs_to :user
-	has_many :posts
+  reverse_geocoded_by :latitude, :longitude
+  belongs_to :user
+  has_many :posts
+
 end

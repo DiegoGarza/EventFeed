@@ -60,6 +60,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:user_id, :name, :description, :twitter_username, :twitter_hashtag, :lat, :lng)
+      params.require(:event).permit(:user_id, :name, :description, :twitter_username, :twitter_hashtag, :latitude, :longitude)
     end
 end

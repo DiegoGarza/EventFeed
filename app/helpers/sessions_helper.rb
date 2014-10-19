@@ -1,5 +1,13 @@
 module SessionsHelper
 
+  def lookup_ip_location
+    if Rails.env.development?
+      Geocoder.search("12.166.185.100")
+    else
+      request.location
+    end
+  end
+
   def sign_in(user)
     remember_token = User.new_remember_token
     cookies.permanent[:remember_token] = remember_token

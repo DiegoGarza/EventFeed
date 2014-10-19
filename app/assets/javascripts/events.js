@@ -22,9 +22,9 @@ $(function(){
         var pos = new google.maps.LatLng(position.coords.latitude,
                                          position.coords.longitude);
 
-        if($("#event_lat").val(pos.lat())){
-          $("#event_lat").val(pos.lat());
-          $("#event_lng").val(pos.lng());
+        if($("#event_latitude").val(pos.lat())){
+          $("#event_latitude").val(pos.lat());
+          $("#event_longitude").val(pos.lng());
         }
 
         marker = new google.maps.Marker({
@@ -57,8 +57,8 @@ $(function(){
     }
     else{
       marker.setPosition(location);
-      $("#event_lat").val(location.lat());
-      $("#event_lng").val(location.lng());
+      $("#event_latitude").val(location.lat());
+      $("#event_longitude").val(location.lng());
     }
   }
 
