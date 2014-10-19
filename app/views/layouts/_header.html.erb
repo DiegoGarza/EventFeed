@@ -10,8 +10,10 @@
       <%= link_to "HEYAH", root_path, id: "logo", class: "navbar-brand", style: "color: white; background-color: rgba(0, 165, 56, 0.8);" %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapseOne">
+      <ul class="nav navbar-nav navbar-left" style="font-size:20px;">
+        <li class="hl"><%= link_to "About", about_path, style: "color: gray;" %></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right" style="font-size:20px;">
-            <!-- <li><%= link_to "About", about_path, style: "color: gray;" %></li> -->
             <li class="hl"><%= link_to "Create Event <i class='fa fa-calendar fa-1x'></i>".html_safe, new_event_path, style: "color: gray;", 'data-no-turbolink' => true %></li>
         <% if signed_in? %>
           <% unless admin_user? %>
