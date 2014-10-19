@@ -7,21 +7,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "brand", root_path, id: "logo", class: "navbar-brand" %>
+      <%= link_to "heyah", root_path, id: "logo", class: "navbar-brand" %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "About", about_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="btn-group btn-toggle hidden-xs" style="margin-top: 14px;">
-          <button id="on-btn"class="btn btn-xs btn-default">Static</button>
-          <button id="off-btn"class="btn btn-xs btn-primary active">Fixed</button>
-        </li>
         <% if signed_in? %>
           <% unless admin_user? %>
-            <li><%= link_to "Users", users_path %></li>
           <% end %>
           <li id="fat-menu" class="dropdown">
             <a href='#' class="dropdown-toggle" data-toggle="dropdown">Account<span class="caret"></span></a>

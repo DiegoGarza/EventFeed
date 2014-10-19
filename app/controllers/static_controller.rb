@@ -4,8 +4,10 @@ class StaticController < ApplicationController
 
     @events = Event.near(@location.coordinates, 20)
     @event = @events.first
-    @posts = @event.posts
+    @posts = @event.posts.order("created_at DESC")
     @topposts = @event.posts.limit(3).order("score DESC")
+    @post = Post.new
+    @user = current_user
   end
 
   def about

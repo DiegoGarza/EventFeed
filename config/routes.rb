@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   resources :events
-
+  resources :posts, only: [:create]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root 'static#home'
