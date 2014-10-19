@@ -8,6 +8,8 @@ $lightGray: #999;
 @import "miscellaneous";
 @import "forms";
 @import "index";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 /* Universal */
 
@@ -17,6 +19,11 @@ html {
 
 body {
   padding-top: 71px;
+  background-image: image-url("green_dust_scratch.png");
+}
+
+container {
+  background-color: white;
 }
 
 section {

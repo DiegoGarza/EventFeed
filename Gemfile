@@ -11,6 +11,7 @@ gem 'bootstrap-datepicker-rails'
 #Extras
 gem "will_paginate"           # Paginates, basically all but for first 30
 gem "bootstrap-will_paginate" # Bootstrap css for paginates
+gem 'font-awesome-sass'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
