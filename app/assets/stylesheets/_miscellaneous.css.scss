@@ -21,3 +21,41 @@
   border: 4px solid gray;
   border-radius: 19px;
 }
+
+li.hl > a:hover {
+  background-color: rgba(0, 165, 56, 0.4);
+}
+
+.card {
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  padding: 8px;
+  font-size: 17px;
+  margin: 10px 10px 10px 10px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+
+.card-trending {
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  padding: 8px;
+  font-size: 18px;
+  margin: 10px 10px 10px 10px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 165, 56, 0.6);
+  box-shadow: 0 1px 6px rgba(0, 165, 56, 0.6);
+}
+
+.card-op {
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  background-color: rgba(100, 149, 237, 0.175);
+  padding: 8px;
+  font-size: 18px;
+  margin: 10px 10px 10px 10px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 165, 56, 0.6);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}

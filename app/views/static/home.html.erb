@@ -1,14 +1,15 @@
 <div class="center">
   <h1><%= @event.name %></h1>
-  <div class="well">
-    <%= @location.coordinates %>
-  </div>
   <hr/>
 </div>
 
 <% @topposts.each do |toppost| %>
-    <div class='jumbotron'>
-      <div class='col-md-1' style= 'margin-left: -60px; margin-top: -9px;'>
+    <%if toppost.user_id == @event.user_id%>
+    <div class='card-op' style="display: flex">
+      <% else %>
+      <div class='card-trending' style="display: flex">
+        <%end%>
+      <div class='col-md-1' style= ''>
         <div class="center">
           <i class="fa fa-arrow-up"></i>
         </div>
@@ -19,30 +20,61 @@
           <i class="fa fa-arrow-down"></i>
         </div>
       </div>
-      <div style='margin: 10px;'>
-      <%= toppost.comment %>
+      <div class="col-md-8" style=''>
+        <div class="row text-muted" style="font-size: 12px;">
+        <% if toppost.user_id %>
+            <%= toppost.user.name %>
+        <% else %>
+            <%= toppost.name.capitalize %>
+        <% end %>
+         - 
+        <%= time_ago_in_words(toppost.created_at) %></div>
+        <div class="row"><%= toppost.comment %></div>
       </div>
+      <div class="pull-right" style="display:-webkit-box; -webkit-box-align:center; margin-left:15%"><button class='btn btn-success disabled'>Trending</button></div>
     </div>
 <% end %>
 
 <hr/>
 
 <%= form_for(@post) do |f| %>
-  <div class="form-group">
-    <%= f.text_area :comment, class: 'form-control', placeholder: "Compose new post..." %>
+  <div class="form-group" style="display: flex;">
+    <div class="col-md-9">
+      <%= f.text_area :comment, id: 'comment', class: 'form-control', style: "height: 70px;", placeholder: "Compose new post..." %>
+      <%= f.hidden_field :event_id, value: @event.id %>
+      <% if signed_in? && current_user.id == @event.user_id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= f.submit "Post", class: "btn btn-primary btn-lg", style: "height: 100%; width: 100%" %>
+      <% if signed_in? && current_user.id == @event.user_id%>
+        <span class="text-muted center">You are posting as <%= current_user.name %></span>
+      <% else %>
+        <span class="text-muted center">You are posting <strong>anonymous</strong></span>
+      <% end %>
+    </div>
   </div>
-  <%= f.hidden_field :event_id, value: @event.id %>
-  <% if signed_in? && current_user.id == @event.user_id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  <% end %>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <div class="well well-sm" id='tips' hidden>
+    Help us by:
+    <ul>
+      <li>being <strong>nice</strong></li>
+      <li>being <strong>helpful</strong></li>
+      <li>refraining from posting <strong>offensive</strong> material.</li>
+    </ul>
+    
+  </div>
 <% end %>
 
 <hr/>
 
 <% @posts.each do |post| %>
-    <div class='well'>
-      <div class='col-md-1' style= 'margin-left: -32px'>
+  <%if post.user_id == @event.user_id%>
+    <div class='card-op' style="display: flex">
+      <% else %>
+      <div class='card' style="display: flex">
+        <%end%>
+      <div class='col-md-1' style= 'margin-left: -18px;'>
         <div class="center">
           <i class="fa fa-arrow-up"></i>
         </div>
@@ -53,8 +85,16 @@
           <i class="fa fa-arrow-down"></i>
         </div>
       </div>
-      <div style='margin: 19px;'>
-      <%= post.comment %>
+      <div class="col-md-11" style=''>
+        <div class="row text-muted" style="font-size: 12px;">
+        <% if post.user_id %>
+            <%= post.user.name %>
+        <% else %>
+            <%= post.name.capitalize %>
+        <% end %>
+         - 
+        <%= time_ago_in_words(post.created_at) %></div>
+        <div class="row"><%= post.comment %></div>
       </div>
     </div>
 <% end %>

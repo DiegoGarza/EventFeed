@@ -8,4 +8,9 @@ class UserMailer < ActionMailer::Base
 		sendgrid_category "Welcome"
 		mail :to => user.email, :subject => "Welcome to Heyah, #{user.name}"
 	end
+
+	def event_start(event)
+		sendgrid_category "Start"
+		mail :to => event.user.email, :subject => "The conversation at #{event.name} has started!"
+	end
 end
