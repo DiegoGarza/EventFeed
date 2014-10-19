@@ -31,13 +31,16 @@
     <%= f.label :twitter_hashtag %><br>
     <%= f.text_field :twitter_hashtag %>
   </div>
+
   <div class="field">
-    <%= f.label :lat %><br>
-    <%= f.text_field :lat %>
+    <%= f.hidden_field :lat %>
   </div>
   <div class="field">
-    <%= f.label :lng %><br>
-    <%= f.text_field :lng %>
+    <%= f.hidden_field :lng %>
+  </div>
+
+  <div style='width: 800px;'>
+    <div id="map-canvas" style='width: 800px; height: 400px;'></div>
   </div>
 
   <div class="actions">

@@ -20,6 +20,7 @@
 //= require bootstrap-datepicker
 //= require_tree .
 //= require turbolinks
+
 $(function(){
   $('.btn-toggle').click(function() {
     $(this).find('.btn').toggleClass('active');  
