@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to my Activity Page!"
+      UserMailer.welcome_message(@user).deliver
       redirect_to @user
     else
       render 'new'
