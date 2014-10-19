@@ -1,5 +1,5 @@
 <div class="center">
-  <h1>Event Name</h1>
+  <h1><%= @event.name %></h1>
   <hr/>
 </div>
 
@@ -21,6 +21,8 @@
       </div>
     </div>
 <% end %>
+
+<hr/>
 
 <% @posts.each do |post| %>
     <div class='well'>
