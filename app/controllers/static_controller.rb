@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
   def home
-    @location = request.location
-  	@event = Event.first
+    @location = lookup_ip_location
+    @event = Event.first
     @posts = @event.posts
     @topposts = @event.posts.limit(3).order("score DESC")
   end
