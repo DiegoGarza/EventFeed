@@ -82,28 +82,32 @@
         <% else %>
         <div class='card' style="display: flex">
           <%end%>
-        <div class='col-md-1' style= 'margin-left: -18px;'>
+      <%= form_for(post, :html => { :style => 'margin-left: 18px; width: 80%;' }) do |f| %>
+        <div class='col-md-1' style= 'margin-left: -18px; margin-right: 4px;'>
           <div class="center">
-            <i class="fa fa-arrow-up"></i>
+            <i id='upvote' class="fa fa-arrow-up" style='cursor: pointer;'></i>
           </div>
-          <div class="center">
+          <div id='myscore' class="center" style="margin-left: 3px;">
             <%= post.score %>
           </div>
           <div class="center">
-            <i class="fa fa-arrow-down"></i>
+            <i id='downvote' class="fa fa-arrow-down" style='cursor: pointer;'></i>
           </div>
         </div>
-        <div class="col-md-11" style=''>
+        <div class="col-md-9" style='margin-left: 6px;'>
           <div class="row text-muted" style="font-size: 12px;">
           <% if post.user_id %>
-              <span class="btn btn-sm btn-warning" style="padding: 0px 3px 0px 3px;"><%= post.user.name %></span>
+              <span class="btn btn-sm btn-warning" style="padding: 0px 3px 0px 3px;" disabled><%= post.user.name %></span>
           <% else %>
-              <%= post.name.capitalize %>
+              <span class="btn btn-sm btn-info" style="padding: 0px 3px 0px 3px;" disabled><%= post.name.capitalize %></span>
           <% end %>
            - 
           <%= time_ago_in_words(post.created_at) %></div>
           <div class="row"><%= post.comment %></div>
         </div>
       </div>
+        <%= f.submit '', style: 'display: none;', id: 'submitbtn' %>
+        <% f.hidden_field :score %>
+      <%end %>
   <% end %>
 <% end %>
