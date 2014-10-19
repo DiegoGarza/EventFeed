@@ -40,6 +40,30 @@ $(function(){
     
     $(this).find('.btn').toggleClass('btn-default');
   })
+  var myPos;
+
+  var geoloc;
+
+  var succesfull = function (position) {
+    geoloc = {
+      longitude: position.coords.longitude,
+      latitude: position.coords.latitude
+    };
+  };
+
+  var getLocation = function(callback){
+    navigator.geolocation.getCurrentPosition(function(pos){
+        succesfull(pos);
+        typeof callback === 'function' && callback(geoloc);
+    }, function(){
+        alert("fail");
+    });
+  };
+
+  getLocation(function(pos){
+    myPos = pos;
+    console.log(myPos);
+  });
 
   
   function handleNoGeolocation(errorFlag) {
@@ -58,5 +82,7 @@ $(function(){
     var infowindow = new google.maps.InfoWindow(options);
     map.setCenter(options.position);
   }
+
+  // console.log(google.maps.geometry.spherical.computeDistanceBetween (pos1, pos2));
   
 });
