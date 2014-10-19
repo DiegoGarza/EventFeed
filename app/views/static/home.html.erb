@@ -1,7 +1,7 @@
 <% if @events.empty? %>
   <div class="card-trending">
     <div class="center">
-      <h1 class="">No events found!<br><small>Create a new one!</small></h1>
+      <h1 class="">No events found nearby!<br><small>Create a new one!</small></h1>
       <%= link_to 'Create event', new_event_path, class: 'btn btn-lg btn-success', 'data-no-turbolink' => true %>
     </div>
   </div>
@@ -59,7 +59,7 @@
         <% if signed_in? && current_user.id == @event.user_id%>
           <span class="text-muted center">You are posting as <%= current_user.name %></span>
         <% else %>
-          <span class="text-muted center">You are posting <strong>anonymous</strong></span>
+          <span class="text-muted center">You are posting <strong>anonymously</strong></span>
         <% end %>
       </div>
     </div>
@@ -96,7 +96,7 @@
         <div class="col-md-11" style=''>
           <div class="row text-muted" style="font-size: 12px;">
           <% if post.user_id %>
-              <%= post.user.name %>
+              <span class="btn btn-sm btn-warning" style="padding: 0px 3px 0px 3px;"><%= post.user.name %></span>
           <% else %>
               <%= post.name.capitalize %>
           <% end %>
