@@ -114,17 +114,19 @@
 </hr>
 
 <div class="center">
-    <h1>Other events nearby </h1>
-    <hr/>
-  </div>
+  <h3>Other events nearby </h3>
+  <hr/>
+</div>
 
 <% @events.each do |event| %>
-  <div class='card' style="display: flex">
-    <div class="col-md-12" style=''>
-      <div class="row text-muted" style="font-size: 12px;">
-        <%= link_to event.name, find_path(event.name) %>
+  <% if event.id != @event.id %>
+    <div class='card' style="display: flex">
+      <div class="col-md-12" style=''>
+        <div class="row text-muted" style="font-size: 12px;">
+          <%= link_to event.name, find_path(event.name) %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 <% end %>
