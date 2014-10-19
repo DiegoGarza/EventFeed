@@ -1,7 +1,8 @@
 class StaticController < ApplicationController
   def home
     @location = lookup_ip_location.first
-
+    if !@location
+      redirect_to action: 'about'
     @events = Event.near(@location.coordinates, 20)
     @event = @events.first
     @posts = @event.posts.order("created_at DESC")
