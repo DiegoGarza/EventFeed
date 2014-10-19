@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get '/home' => 'static#home'
   get '/find/:name' => 'static#home', :as => 'find'
+  patch '/post/:id' => 'posts#upvote', :as => 'post'
   get '/signup' => 'users#new'
   get '/signin' => 'sessions#new'
   delete '/signout' => 'sessions#destroy'

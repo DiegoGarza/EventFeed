@@ -23,7 +23,7 @@
 
 $(function(){
   $('.btn-toggle').click(function() {
-    $(this).find('.btn').toggleClass('active');  
+    $(this).find('.btn').toggleClass('active');
     
     if ($(this).find('.btn-primary').size()>0) {
       $(this).find('.btn').toggleClass('btn-primary');
@@ -87,7 +87,13 @@ $(function(){
       $('#tips').slideDown();
     });
   }
-  
+  if($('#upvote')){
+    $( "#upvote" ).click(function() {
+      $( "#submitbtn" ).trigger( "click" );
+      $('#myscore').html("1");
+    });
+
+  }  
   // console.log(google.maps.geometry.spherical.computeDistanceBetween (pos1, pos2));
   
 });

@@ -18,6 +18,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.score = @post.score+1
+    @post.save
+    redirect_to find_path(@post.event.name)
+  end
+
   private
 
     def post_params
