@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'static#home'
 
   get '/home' => 'static#home'
-  get '/:name' => 'static#home'
+  get '/find/:name' => 'static#home', :as => 'find'
   get '/signup' => 'users#new'
   get '/signin' => 'sessions#new'
   delete '/signout' => 'sessions#destroy'

@@ -12,9 +12,9 @@ class PostsController < ApplicationController
     @post.name = adjective[rand(0..adjective.count-1)] + " " + animals[rand(0..animals.count-1)]
     if @post.save
       flash[:success] = "Post created!"
-      redirect_to root_url(event)
+      redirect_to find_path(event.name)
     else
-      redirect_to root_url(event)
+      redirect_to find_path(event.name)
     end
   end
 
