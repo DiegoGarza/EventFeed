@@ -13,6 +13,7 @@ namespace :db do
                   latitude: 30.2848502)
     99.times do |n|
       Post.create!(event_id: 1,
+                   name: Faker::Name.first_name,
                    comment: Faker::Lorem.sentence,
                    score: Faker::Number.number(3))
     end
